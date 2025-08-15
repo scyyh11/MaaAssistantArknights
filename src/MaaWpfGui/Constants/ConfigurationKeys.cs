@@ -199,12 +199,13 @@ namespace MaaWpfGui.Constants
 
         public const string ReceiveAward = "Mission.ReceiveAward";
         public const string ReceiveMail = "Mission.ReceiveMail";
-        public const string ReceiveFreeRecruit = "Mission.ReceiveFreeRecruit";
+        public const string ReceiveFreeGacha = "Mission.ReceiveFreeRecruit";
         public const string ReceiveOrundum = "Mission.ReceiveOrundum";
         public const string ReceiveMining = "Mission.ReceiveMining";
         public const string ReceiveSpecialAccess = "Mission.ReceiveSpecialAccess";
         public const string CopilotAddUserAdditional = "Copilot.AddUserAdditional";
         public const string CopilotUserAdditional = "Copilot.UserAdditional";
+        public const string CopilotSelectFormation = "Copilot.SelectFormation";
         public const string CopilotLoopTimes = "Copilot.LoopTimes";
         public const string CopilotTaskList = "Copilot.CopilotTaskList";
         public const string UpdateProxy = "VersionUpdate.Proxy";

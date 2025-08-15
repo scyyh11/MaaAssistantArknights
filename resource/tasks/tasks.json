@@ -516,14 +516,14 @@
     "ChapterSwipeToTheLeft": {
         "Doc": "滑动到最左",
         "baseTask": "ChapterSlowlySwipeToTheLeft",
-        "specialParams": [150, 0, 0.5],
+        "specialParams": [150, 0, 0],
         "next": ["#self"],
         "maxTimes": 5
     },
     "ChapterSwipeToTheRight": {
         "Doc": "滑动到最右",
         "baseTask": "ChapterSlowlySwipeToTheRight",
-        "specialParams": [150, 0, 0.5],
+        "specialParams": [150, 0, 0],
         "next": ["#self"],
         "maxTimes": 10
     },
@@ -587,7 +587,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "maxTimes": 3,
         "exceededNext": ["Stop"],
@@ -784,7 +786,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "baseTask": "StartUp",
         "next": ["Settings"]
@@ -924,6 +928,7 @@
             "MainThemes#next",
             "CloseAnnos#next",
             "OfflineConfirm",
+            "GameStartCheckResourceOCR",
             "GameStartUpdateOCR"
         ]
     },
@@ -951,6 +956,14 @@
         "maskRange": [1, 255],
         "reduceOtherTimes": ["StartButton1", "StartButton2"],
         "next": ["StartUpThemes#next", "GameStart@LoadingIcon"]
+    },
+    "GameStartCheckResourceOCR": {
+        "doc": "开始唤醒时最开始的完整性检测",
+        "algorithm": "OcrDetect",
+        "text": ["资源完整性", "不消耗流量"],
+        "roi": [340, 620, 600, 80],
+        "postDelay": 5000,
+        "next": ["#self", "StartUpThemes#next"]
     },
     "GameStartUpdateOCR": {
         "doc": "开始唤醒时遇到更新下载",
@@ -994,7 +1007,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "next": ["Home", "StartUpBegin"],
         "postDelay_Doc": "等待以防万一（StartUp还有双倍的任务延迟等待，默认0.5s x2",
@@ -1020,7 +1035,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "roi": [844, 58, 268, 272],
         "Doc": "有时候明明已经在主界面了，停了一小会又弹个窗。多检测几次，一直在主界面才算完成",
@@ -1467,7 +1484,8 @@
     },
     "SanityMatch": {
         "baseTask": "NumberOcrReplace",
-        "roi": [1120, 20, 160, 40]
+        "roi": [1120, 20, 160, 40],
+        "binThreshold": [0, 255]
     },
     "StageSanityCost": {
         "roi": [1100, 660, 180, 60]
@@ -1476,6 +1494,7 @@
         "Doc": "先拿理智标记匹配完, 偏移roi再ocr",
         "baseTask": "NumberOcrReplace",
         "roi": [40, 0, 49, 24],
+        "binThreshold": [0, 255],
         "ocrReplace": [["-", ""]]
     },
     "UseMedicine": {
@@ -1521,12 +1540,13 @@
     "UsingMedicineCount": {
         "baseTask": "NumberOcrReplace",
         "rectMove": [-95, 28, 105, 60],
-        "specialParams": [220, 255]
+        "binThreshold": [220, 255],
+        "useRaw": false
     },
     "MedicineInventory": {
         "baseTask": "NumberOcrReplace",
         "rectMove": [-29, 87, 40, 33],
-        "specialParams": [220, 255]
+        "binThreshold": [220, 255]
     },
     "MedicineExpiringTime": {
         "algorithm": "OcrDetect",
@@ -1543,12 +1563,14 @@
     "UsingMedicine-Target": {
         "baseTask": "NumberOcrReplace",
         "roi": [255, 390, 315, 140],
+        "binThreshold": [100, 255],
         "ocrReplaceDoc": "有时候会识别出小数点等其他东西，需要附加到 NumberOcrReplace 的后面，cpp 中处理",
         "ocrReplace": [["[^\\d]", ""]]
     },
     "UsingMedicine-SanityMax": {
         "baseTask": "NumberOcrReplace",
         "roi": [440, 330, 150, 55],
+        "binThreshold": [100, 255],
         "ocrReplace": [["[^\\d]", ""]]
     },
     "DrGrandetUseOriginiums": {
@@ -1652,7 +1674,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "action": "ClickSelf",
         "roi": [844, 58, 268, 272],
@@ -1687,7 +1711,9 @@
             "Sarkaz/Recruit.png",
             "Delicious/Recruit.png",
             "Gaming/Recruit.png",
-            "DahuangCity/Recruit.png"
+            "DahuangCity/Recruit.png",
+            "Dreamland/DreamlandDefault/Recruit.png",
+            "Dreamland/DreamlandDark/Recruit.png"
         ],
         "action": "ClickSelf",
         "roi": [900, 450, 200, 150],
@@ -1768,7 +1794,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "next": ["MiningActivities", "Stop"]
     },
@@ -1812,7 +1840,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "next": ["OrundumActivities", "Stop"]
     },
@@ -1894,7 +1924,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "next": ["RecruitingActivities", "Stop"]
     },
@@ -1908,7 +1940,7 @@
     },
     "RecruitingActivitiesConfirm": {
         "algorithm": "OcrDetect",
-        "text": ["赠送", "次", "小时"],
+        "text": ["赠送", "次", "小时", "分钟"],
         "roi": [729, 515, 303, 135],
         "next": ["RecruitingActivitiesRecruit", "RecruitingActivitiesConfirm"],
         "maxTimes": 3
@@ -1975,7 +2007,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "next": ["SpecialAccessActivities", "Stop"]
     },
@@ -2030,7 +2064,9 @@
             "Sarkaz/Task.png",
             "Delicious/Task.png",
             "Gaming/Task.png",
-            "DahuangCity/Task.png"
+            "DahuangCity/Task.png",
+            "Dreamland/DreamlandDefault/Task.png",
+            "Dreamland/DreamlandDark/Task.png"
         ],
         "maskRange": [1, 255],
         "action": "ClickSelf",
@@ -2069,7 +2105,7 @@
     },
     "DailyTask": {
         "baseTask": "WeeklyTask",
-        "template": "WeeklyTask",
+        "template": "WeeklyTask.png",
         "rectMove": [-150, 0, 100, 30],
         "next": ["ReceiveAward", "WeeklyTask"]
     },
@@ -2093,7 +2129,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "action": "DoNothing",
         "next": ["Mail", "MailWithoutAward"]
@@ -2150,7 +2188,9 @@
             "Sarkaz/Friends.png",
             "Delicious/Friends.png",
             "Gaming/Friends.png",
-            "DahuangCity/Friends.png"
+            "DahuangCity/Friends.png",
+            "Dreamland/DreamlandDefault/Friends.png",
+            "Dreamland/DreamlandDark/Friends.png"
         ],
         "templThreshold": 0.7,
         "maskRange": [1, 255],
@@ -2209,7 +2249,9 @@
             "Sarkaz/Mall.png",
             "Delicious/Mall.png",
             "Gaming/Mall.png",
-            "DahuangCity/Mall.png"
+            "DahuangCity/Mall.png",
+            "Dreamland/DreamlandDefault/Mall.png",
+            "Dreamland/DreamlandDark/Mall.png"
         ],
         "action": "ClickSelf",
         "roi": [772, 407, 186, 171],
@@ -2268,7 +2310,9 @@
             "Sarkaz/Terminal.png",
             "Delicious/Terminal.png",
             "Gaming/Terminal.png",
-            "DahuangCity/Terminal.png"
+            "DahuangCity/Terminal.png",
+            "Dreamland/DreamlandDefault/Terminal.png",
+            "Dreamland/DreamlandDark/Terminal.png"
         ],
         "action": "Stop",
         "roi": [844, 58, 268, 272],
@@ -2372,7 +2416,7 @@
     },
     "SupportListAnalyzer-Elite": {
         "doc": "若助战干员栏位底部 Icon 的 Rect 为 r, 则干员精英化等级识别用 roi 为 [r.x + roi.x, r.y - roi,y, roi.w, roi.h]",
-        "template": ["SupportListAnalyzer-Elite-2", "SupportListAnalyzer-Elite-1"],
+        "template": ["SupportListAnalyzer-Elite-2.png", "SupportListAnalyzer-Elite-1.png"],
         "roi": [35, -187, 60, 50],
         "templThreshold": 0.7,
         "method": ["RGBCount", "RGBCount"],
@@ -2456,7 +2500,8 @@
             "Infrast@ReturnButtons#next",
             "Infrast@CloseAnnos#next",
             "Infrast@OfflineConfirm"
-        ]
+        ],
+        "postDelay": 1000
     },
     "Infrast@MainThemes": {
         "next": ["InfrastBegin#next"]
@@ -2477,7 +2522,9 @@
             "Sarkaz/EnterInfrast.png",
             "Delicious/EnterInfrast.png",
             "Gaming/EnterInfrast.png",
-            "DahuangCity/EnterInfrast.png"
+            "DahuangCity/EnterInfrast.png",
+            "Dreamland/DreamlandDefault/EnterInfrast.png",
+            "Dreamland/DreamlandDark/EnterInfrast.png"
         ],
         "maskRange": [1, 255],
         "roi": [930, 540, 230, 180],
@@ -4085,6 +4132,8 @@
         "algorithm": "OcrDetect",
         "isAscii": true,
         "text": [],
+        "binThreshold": [210, 255],
+        "useRaw": false,
         "ocrReplace": [
             ["^.+-EX-?\\d+.*$", "_INVALID_"],
             ["^.+-S-?\\d+.*$", "_INVALID_"],
@@ -4253,7 +4302,7 @@
     },
     "DepotQuantity": {
         "template": "empty.png",
-        "specialParams": [110, 255]
+        "specialParams": [150, 255]
     },
     "DepotBegin": {
         "algorithm": "JustReturn",
@@ -4276,7 +4325,9 @@
             "Sarkaz/DepotEnter.png",
             "Delicious/DepotEnter.png",
             "Gaming/DepotEnter.png",
-            "DahuangCity/DepotEnter.png"
+            "DahuangCity/DepotEnter.png",
+            "Dreamland/DreamlandDefault/DepotEnter.png",
+            "Dreamland/DreamlandDark/DepotEnter.png"
         ],
         "maskRange": [1, 255],
         "roi": [1109, 560, 171, 160],
@@ -4348,7 +4399,13 @@
     },
     "OperBoxBegin": {
         "algorithm": "JustReturn",
-        "next": ["OperBoxEnter", "OperBoxRoleTabSelect", "OperBoxRoleTab", "OperBoxEnter@ReturnButtons#next"]
+        "next": [
+            "OperBoxEnter",
+            "OperBoxRoleTabSelect",
+            "OperBoxSortTabSelect",
+            "OperBoxRoleTab",
+            "OperBoxEnter@ReturnButtons#next"
+        ]
     },
     "OperBoxEnter": {
         "template": [
@@ -4360,12 +4417,14 @@
             "Sarkaz/OperBoxEnter.png",
             "Delicious/OperBoxEnter.png",
             "Gaming/OperBoxEnter.png",
-            "DahuangCity/OperBoxEnter.png"
+            "DahuangCity/OperBoxEnter.png",
+            "Dreamland/DreamlandDefault/OperBoxEnter.png",
+            "Dreamland/DreamlandDark/OperBoxEnter.png"
         ],
         "action": "ClickSelf",
         "maskRange": [1, 255],
         "roi": [935, 300, 265, 110],
-        "next": ["OperBoxRoleTabSelect", "OperBoxRoleTab"],
+        "next": ["OperBoxRoleTabSelect", "OperBoxSortTabSelect", "OperBoxRoleTab"],
         "crop_doc": {
             "roi": [945, 301, 85, 78],
             "mask": []
@@ -4375,6 +4434,13 @@
         "action": "ClickSelf",
         "template": "BattleQuickFormationCollapseRole.png",
         "roi": [1152, 0, 128, 138],
+        "next": ["OperBoxSortTabSelect", "OperBoxRoleTab"]
+    },
+    "OperBoxSortTabSelect": {
+        "action": "ClickSelf",
+        "algorithm": "OcrDetect",
+        "text": ["等级"],
+        "roi": [783, 0, 174, 136],
         "next": ["OperBoxRoleTab"]
     },
     "OperBoxRoleTab": {
@@ -4846,7 +4912,9 @@
             "Sarkaz/GachaEnter.png",
             "Delicious/GachaEnter.png",
             "Gaming/GachaEnter.png",
-            "DahuangCity/GachaEnter.png"
+            "DahuangCity/GachaEnter.png",
+            "Dreamland/DreamlandDefault/GachaEnter.png",
+            "Dreamland/DreamlandDark/GachaEnter.png"
         ],
         "roi": [1052, 443, 228, 156],
         "next": ["GachaEnter", "GachaEnter@LoadingText", "DoGacha"],
@@ -5016,7 +5084,9 @@
             "Sarkaz/Mall.png",
             "Delicious/Mall.png",
             "Gaming/Mall.png",
-            "DahuangCity/Mall.png"
+            "DahuangCity/Mall.png",
+            "Dreamland/DreamlandDefault/Mall.png",
+            "Dreamland/DreamlandDark/Mall.png"
         ],
         "next": ["Store@EnterTicketStore@LoadingIcon", "Store@EnterTicketStore"]
     },
@@ -5229,7 +5299,7 @@
     },
     "UseSupportUnit-InSupportList": {
         "doc": "通过识别右上角 <更新助战列表> 文字左边的 Icon 或者 冷却倒计时左边的 Icon 判断是否已进入助战列表",
-        "template": ["UseSupportUnit-Refresh", "UseSupportUnit-RefreshCooldown"],
+        "template": ["UseSupportUnit-Refresh.png", "UseSupportUnit-RefreshCooldown.png"],
         "roi": [1096, 12, 61, 52]
     },
     "UseSupportUnit-LeaveSupportList": {
@@ -5239,7 +5309,7 @@
     },
     "UseSupportUnit-LeaveSupportList-InSupportList": {
         "baseTask": "UseSupportUnit-InSupportList",
-        "template": ["UseSupportUnit-Refresh", "UseSupportUnit-RefreshCooldown"],
+        "template": ["UseSupportUnit-Refresh.png", "UseSupportUnit-RefreshCooldown.png"],
         "next": ["UseSupportUnit-ReturnButton"]
     },
     "UseSupportUnit-MaxSpecLvl-1": {

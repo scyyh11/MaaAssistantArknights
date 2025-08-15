@@ -10,10 +10,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="https://github.com/canton7/Stylet"
     xmlns:setting="clr-namespace:MaaWpfGui.ViewModels.UI"
-    xmlns:task="clr-namespace:MaaWpfGui.ViewModels.UserControl.TaskQueue"
-    xmlns:ui="clr-namespace:MaaWpfGui.ViewModels.UI"
+    xmlns:task="clr-namespace:MaaWpfGui.Configuration.Single.MaaTask"
+    xmlns:ui="clr-namespace:MaaWpfGui.ViewModels.UserControl.TaskQueue"
     d:Background="White"
-    d:DataContext="{d:DesignInstance {x:Type task:FightSettingsUserControlModel}}"
+    d:DataContext="{d:DesignInstance {x:Type ui:FightSettingsUserControlModel}}"
     d:DesignWidth="220"
     s:View.ActionTarget="{Binding}"
     mc:Ignorable="d">
@@ -37,8 +37,8 @@
                         Margin="6"
                         VerticalContentAlignment="Center"
                         Content="{DynamicResource UseSanityPotion}"
-                        IsChecked="{Binding UseMedicineWithNull}"
-                        IsEnabled="{c:Binding !UseStone}"
+                        IsChecked="{Binding UseMedicine}"
+                        IsEnabled="{c:Binding !UseStoneDisplay}"
                         MouseRightButtonUp="{s:Action ToggleCheckBoxNullOnRightClick,
                                                       Target={x:Type helper:CheckBoxHelper}}"
                         ToolTip="{DynamicResource CheckBoxesNotSavedAsNull}" />
@@ -47,7 +47,7 @@
                         Margin="6"
                         VerticalContentAlignment="Center"
                         Content="{c:Binding 'UseStoneString + (AllowUseStoneSave ? &quot;&quot; : &quot;*&quot;)'}"
-                        IsChecked="{Binding UseStoneWithNull}"
+                        IsChecked="{Binding UseStone}"
                         MouseRightButtonUp="{s:Action ToggleCheckBoxNullOnRightClick,
                                                       Target={x:Type helper:CheckBoxHelper}}"
                         ToolTip="{DynamicResource CheckBoxesNotSaved}" />
@@ -56,7 +56,7 @@
                         Margin="6"
                         VerticalContentAlignment="Center"
                         Content="{DynamicResource PerformBattles}"
-                        IsChecked="{Binding HasTimesLimitedWithNull}"
+                        IsChecked="{Binding HasTimesLimited}"
                         MouseRightButtonUp="{s:Action ToggleCheckBoxNullOnRightClick,
                                                       Target={x:Type helper:CheckBoxHelper}}"
                         ToolTip="{DynamicResource CheckBoxesNotSavedAsNull}" />
@@ -69,7 +69,7 @@
                         HorizontalAlignment="Left"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        IsEnabled="{c:Binding !UseStone}"
+                        IsEnabled="{c:Binding !UseStoneDisplay}"
                         Maximum="999"
                         Minimum="0"
                         Value="{Binding MedicineNumber, UpdateSourceTrigger=PropertyChanged}" />
@@ -106,7 +106,7 @@
                             Height="30"
                             VerticalContentAlignment="Center"
                             Content="{DynamicResource AssignedMaterial}"
-                            IsChecked="{Binding IsSpecifiedDropsWithNull}"
+                            IsChecked="{Binding IsSpecifiedDrops}"
                             MouseRightButtonUp="{s:Action ToggleCheckBoxNullOnRightClick,
                                                           Target={x:Type helper:CheckBoxHelper}}"
                             ToolTip="{DynamicResource CheckBoxesNotSavedAsNull}" />
@@ -116,7 +116,7 @@
                             NormalOpacity="0.25"
                             TooltipText="{DynamicResource SpecifiedDropsTip}" />
                     </Grid>
-                    <Grid Height="42" Visibility="{c:Binding IsSpecifiedDropsWithNull}">
+                    <Grid Height="42" Visibility="{c:Binding IsSpecifiedDrops}">
                         <controls:TextBlock
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -148,7 +148,7 @@
                         VerticalContentAlignment="Center"
                         Maximum="1145141919"
                         Minimum="1"
-                        Visibility="{c:Binding IsSpecifiedDropsWithNull}"
+                        Visibility="{c:Binding IsSpecifiedDrops}"
                         Value="{Binding DropsQuantity, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </Grid>
@@ -382,8 +382,8 @@
             <Grid
                 Grid.Row="4"
                 d:Visibility="Visible"
-                Visibility="{c:Binding 'InfrastMode == task:InfrastMode.Custom and TaskSettingVisibilities.CustomInfrastPlanShowInFightSettings',
-                                       Source={x:Static task:InfrastSettingsUserControlModel.Instance}}">
+                Visibility="{c:Binding 'InfrastMode == ui:InfrastMode.Custom and TaskSettingVisibilities.CustomInfrastPlanShowInFightSettings',
+                                       Source={x:Static ui:InfrastSettingsUserControlModel.Instance}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition />
@@ -407,8 +407,8 @@
                         DisplayMemberPath="Display"
                         IsHitTestVisible="{c:Binding !InfrastTaskRunning,
                                                      Source={x:Static helper:Instances.TaskQueueViewModel}}"
-                        ItemsSource="{Binding CustomInfrastPlanList, Source={x:Static task:InfrastSettingsUserControlModel.Instance}}"
-                        SelectedValue="{Binding CustomInfrastPlanIndex, Source={x:Static task:InfrastSettingsUserControlModel.Instance}}"
+                        ItemsSource="{Binding CustomInfrastPlanList, Source={x:Static ui:InfrastSettingsUserControlModel.Instance}}"
+                        SelectedValue="{Binding CustomInfrastPlanIndex, Source={x:Static ui:InfrastSettingsUserControlModel.Instance}}"
                         SelectedValuePath="Value" />
                 </StackPanel>
             </Grid>

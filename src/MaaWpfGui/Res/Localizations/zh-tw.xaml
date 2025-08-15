@@ -229,6 +229,7 @@
     <system:String x:Key="AlgorithmBadge">繁榮證章</system:String>
     <system:String x:Key="AlgorithmConstructionPoint">建造點數</system:String>
     <system:String x:Key="AlgorithmDoneSmeltGold">鍛造赤金</system:String>
+    <system:String x:Key="NotSwitch">不切換</system:String>
     <system:String x:Key="NotSelected">不選擇</system:String>
     <system:String x:Key="Official">官服</system:String>
     <system:String x:Key="Bilibili">Bilibili 服</system:String>
@@ -445,8 +446,8 @@
     <system:String x:Key="CreditFullOnlyBuyDiscount">博士! \n只購買折扣商品讓信用點數溢出了！\n小心信用點數浪費哦！\n剩餘信用點數：</system:String>
     <system:String x:Key="ReceiveDailyAndWeeklyAward">領取每日 / 每週任務獎勵</system:String>
     <system:String x:Key="ReceiveMail">領取所有郵件獎勵</system:String>
-    <system:String x:Key="ReceiveFreeRecruit">進行限定池贈送的每日免費單抽</system:String>
-    <system:String x:Key="ReceiveFreeRecruitTip">若不存在免費單抽，則不會抽取</system:String>
+    <system:String x:Key="ReceiveFreeGacha">進行限定池贈送的每日免費單抽</system:String>
+    <system:String x:Key="ReceiveFreeGachaTip">若不存在免費單抽，則不會抽取</system:String>
     <system:String x:Key="GachaWarning">該功能屬於危險功能，可能會造成誤抽\n按下 ｢{key=Confirm}｣ 鍵即視為你了解並願意承擔可能出現的風險</system:String>
     <system:String x:Key="ReceiveOrundum">收集幸運牆的每日合成玉獎勵</system:String>
     <system:String x:Key="ReceiveMining">領取限時開採許可的每日合成玉獎勵</system:String>
@@ -507,7 +508,7 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Notifications\Settin
     <system:String x:Key="ScreenshotTest">截圖測試</system:String>
     <system:String x:Key="MuMu12ExtrasEnabled">啟用 MuMu 截圖增強模式</system:String>
     <system:String x:Key="MuMu12ExtrasEnabledTip" xml:space="preserve">
-需使用官版或方舟專版 MuMu 12 V4.0.0 或更新版本，國際版暫不支援。
+需使用官版或方舟專版 MuMu V4.0.0 或更新版本，國際版暫不支援。
 強烈建議在開啟本功能後立刻執行一次截圖測試。
 MAA 會自動通過註冊表獲取安裝路徑，若獲取失敗則請手動填寫。\n
 安裝路徑應填寫模擬器安裝目錄的根目錄，例如模擬器執行檔路徑為
@@ -621,7 +622,7 @@ C:\\leidian\\LDPlayer9。\n
  或者
 戰鬥次數不足完成設定倍率 (如僅夠 5 次但設為 6 倍), 也將無法進入戰鬥
 
-• 不選擇:
+• {key=NotSwitch}:
 不調整遊戲內代理倍率設定</system:String>
     <system:String x:Key="StageSelect">關卡選擇</system:String>
     <system:String x:Key="StageSelect2">備選</system:String>
@@ -1113,7 +1114,7 @@ C:\\leidian\\LDPlayer9。\n
     <!--  Announcement  -->
     <system:String x:Key="Announcement">公告</system:String>
     <system:String x:Key="CheckAndDownloadAnnouncement">查看公告</system:String>
-    <system:String x:Key="DoNotRemindThisAnnouncementAgain">不再提示此公告</system:String>
+    <system:String x:Key="DoNotRemindThisAnnouncementAgain">下次公告更新前不再顯示</system:String>
     <!--  !Announcement  -->
     <!--  Reclamation  -->
     <system:String x:Key="ReclamationEarlyTip" xml:space="preserve">

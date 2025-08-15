@@ -1,143 +1,85 @@
-## v5.22.0
-
-### 博士五连冠（x | Highlight
-
-本次版本我们修复了大量 bug，为本次夏活提供了小游戏支持。
-
-#### SideStory「墟」
-
-在这个版本，我们为本次夏活的【相谈室】小游戏提供了支持，但请注意：
-
-牛牛**只会**选择增加最多“兴味”的选项，丝毫不考虑“信任”，也不会考虑客人类型所决定的最大回合数（即“情绪”），
-
-牛牛只会帮你解放双手，如果想要追求最大收益，请关注其他博士总结的攻略吧~
-
-#### 集成战略 #6「岁的界园志异」
-
-我们修复了大量界园肉鸽和其他肉鸽相关的 bug，并且优化了刷钱流程。
-
-现在你可以在 MAA 选择指挥分队开局，并选择难度 3（当然游戏内得先解锁难度 3），获得最大的刷钱效率。
-
-刷等级功能也作了初步适配（但尚未测算效率），不过刷热水壶开局还是需要再等等，牛牛在努力啦~
-
-----
-
-#### [CN ONLY] SideStory "Ato"
-
-In this version, we've added support for the [Conversation Room] minigame in this summer event. Please note:
-
-NiuNiu will **ONLY** select options that maximize "Interest", completely disregarding "Trust" and the maximum turn limit determined by guest types (i.e., "Mood").
-
-NiuNiu is designed to automate the process. For maximizing rewards, please refer to strategy guides curated by other Doctors.
-
-#### [CN ONLY] Integrated Strategies #6 "Sui's Garden of Grotesqueries"
-
-We've fixed numerous bugs related to this and other I.S., while optimizing the coin investing process.
-
-You may now select Leader Squad as your starting and choose Difficulty 3 (requires prior in-game unlock) in MAA for maximum coin investing efficiency.
-
-Preliminary adaptation has been made for gaining Experience Points (efficiency metrics pending). The "Grind to obtain Hot Water Kettle or Elite II Operators" strategy requires further development - NiuNiu is working hard!
-
-----
-
-以下是详细信息：
+## v5.23.0-beta.1
 
 ### 新增 | New
 
-* 相谈室 小游戏 (#13461) @ABA2396
-* SideStory「墟」关卡导航 @SherkeyXD
-* 界园肉鸽补充战斗逻辑 (#13433) @Saratoga-Official
-* wpf支持作业版本限制 @status102
-* 界园肉鸽补充事件选择逻辑 (#13400) @Saratoga-Official
-* 烧水分队不存在时自动替换为当前分队 @ABA2396
-* 刷开局模式禁用源石锭达到上限时停止 @ABA2396
-* 填写错误安装路径时重新弹窗提示 @ABA2396
-* 肉鸽使用助战新增需先填写开局干员的提示 @ABA2396
-* 新增是否进行线索交流选项 (#13368) @Lemon-miaow
+* 烧水模式启用快速退出 (#13690) @SherkeyXD @Alan-Charred @ABA2396
+* 支持 `梦乡` 主题 (#13693) @ABA2396
+* ADB 连接失败时尝试启动模拟器 勾选框在连接设置与启动设置中同时显示 @ABA2396
+* 支持 mumu 5555 端口使用控制台退出与截图增强 @ABA2396
+* 自动编队支持指定使用编队 @ABA2396
 
 ### 改进 | Improved
 
-* 优化水月肉鸽招募&傀影战斗 (#13344) @ntgmc @Saratoga-Official
-* 肉鸽节点识别 (#13427) @ABA2396
-* 更新繁中服「崔林特爾梅之金」活動導航 (#13450) @momomochi987
+* 幸运掉落用家具零件代替显示 @ABA2396
+* 仓库识别改用二值化后的非 char 模型识别 (#13667) @ABA2396
+* 繁中服基建 + 保全派駐 7 相關更新 (#13643) @momomochi987
+* 代理倍率、肉鸽难度 使用 `不切换` 代替 `当前`、`不使用` 以符合实际逻辑 (#13612) @status102 @HX3N @Constrat
 
 ### 修复 | Fix
 
-* 卡遇见板子 @ABA2396
-* 祠堂口事件识别失败 @Saratoga-Official
-* 调整飞来横祸 EW 站位 @Saratoga-Official
-* 调整往事暗哑离域检查EW站位 @Saratoga-Official
-* 拾取关卡掉落后找不到节点时放弃 @ABA2396
-* 祠堂口事件识别失败 @ABA2396
-* 夕娥忆 关卡名识别错误 @ABA2396
-* 重复报关卡难度 @ABA2396
-* 禳解事件识别错误 @ABA2396
-* 修复层名识别问题 -- "云瓦亭" -> "云(瓦)?亭" @Alan-Charred
-* 拥有时光之末战斗失败后无法跳过动画 @ABA2396
-* 战斗失败没进结算识别 @ABA2396
-* 汝吾门 识别 @ABA2396
-* wpf自动战斗干员模组选择默认值错误 @status102
-* 修复任务过程中修改剩余理智后导致关卡无法连续执行的问题 @ABA2396
-* 掌灯与引烛 事件识别 @ABA2396
-* 肉鸽通关难度成就解锁判定错误 @status102
-* 狭路相逢善恶同道识别 (#13383) @Saratoga-Official
-* 修复放弃招募任务链；避战识别不到得偿所愿 (#13395) @Alan-Charred @ABA2396
-* 无法选中 `坚不可摧` 与 `随心所欲` 分队 @ABA2396
-* 无法使用连战 @ABA2396
-* fix: 装置“斩”识别 (#13459) @AimOwO
-* fix: 催债鬼夜叉二次选择 @Saratoga-Official
-* YostarKR 海神的信者 ocr edit @HX3N
-* YostarKR 黍 ocr edit @HX3N
-* YostarKR removes spaces in StrategyChange_mode and NextLevel @HX3N
-* JieGarden roguelike stage templates @Alan-Charred
-* remove leading digits in IS encounters for YostarEN @Constrat
-* typo for BattleStage Sarkaz EN @Constrat
-* clang style @Constrat
+* 无法区分界园 3/5 层 boss @ABA2396
+* 因招募动画卡预见密文板 (#13680) @ABA2396
+* 获得排异反应的干员无法选择技能 @ABA2396
+* 未启用备选关卡也会输出剿灭提醒 @status102
+* 合成密文板未进入合成页面导致卡死 @ABA2396
+* 商店因为动画卡在源石锭不足 @ABA2396
+* 理智药背景干扰使用数量识别 @status102
+* 第一层没出商店时会在第三层才退出 @ABA2396
+* 肉鸽种子选择框 visibility 判断更新 @status102
+* 每次截图测试前断开模拟器连接以获取最新的最快截图耗时 @ABA2396
+* 锻冶旧迹 导航识别错误 @ABA2396
+* 追加自定干员职业与最后编入干员职业相同时, 误展开子职业列表 @status102
+* 肉鸽烧水选择当前难度时禁用 0难烧水切换 @status102
+* 修复 jp 萨卡兹肉鸽部分层无法正确识别的问题 (#13691) @THSLP13
+* EN Phantom IS font change nextlevel fix @Constrat
+* start plugin task not enough delay (#13623) @Constrat
 
 ### 文档 | Docs
 
-* 文~档~大~更~新，开始失败喽—— (#13410) @Rbqwow @Saratoga-Official @ABA2396
-* useRaw 仅当 withoutDet 为 true 时生效 @ABA2396
-* 更新文档与 maa_tasks_schema @ABA2396
+* mumu (#13658) @Rbqwow
+* 文档站小修复 (#13659) @Rbqwow
 
 ### 其他 | Other
 
-* 优化界园层名识别 @ABA2396
-* 更新截图 @ABA2396
-* 优化成就排序与描述 @ABA2396
-* 优化界面显示效果 @ABA2396
-* 优化多层事件逻辑 @ABA2396
-* 鲍老板连锁去掉引号 @Saratoga-Official
-* 对掉落信息进行排序 与 ToolTip 保持一致 (#13404) @travellerse
-* ComboBox 的光标颜色不会随主题色变化 @ABA2396
-* 增加 hp 识别标志 @ABA2396
-* 死循环 @ABA2396
-* 其他肉鸽的屎山爆炸了 @ABA2396
-* 野鬃识别 @ABA2396
-* 调整界面显示效果 @ABA2396
-* 完整显示注入 maa 的 dll 的路径 @ABA2396
-* PipelineAnalyzer 支持使用灰度图匹配文字 @ABA2396
-* 添加一键轮换说明 @ABA2396
-* 统一 TooltipBlock 位置 @ABA2396
-* 调整安全屋颜色范围 @ABA2396
-* 调整颜色阈值 @ABA2396
-* 添加白色部分识别 @ABA2396
-* 调整返回主界面点击位置 @ABA2396
-* 怎么jb有个0.6的阈值 @ABA2396
-* 不期而遇失败时尝试放弃 @ABA2396
-* 在事件中卡死时尝试放弃 @ABA2396
-* 删除 999 @ABA2396
-* 彻底卡住时记录截图后尝试放弃 @ABA2396
-* 地镇事件选择 @ABA2396
-* 调整翻译 @ABA2396
-* 删除多余注释 @ABA2396
-* 强制替换 adb 改为使用本地 adb @ABA2396
-* 删除无用函数 @ABA2396
-* i18n english key @Constrat
-* update IS for EN @Constrat
-* KR dehardcode string names and tweak translations @HX3N
-* JP edits (#13460) @Manicsteiner
-* update YostarEN OR navigation @Constrat
-* dehardcode string names follows b0a53cd5b07d0ae13a32b781613f908a1d8b9896 @Constrat
-* update ignore templates @Constrat
-* i18n: zh-tw tweak translations (#13467) @momomochi987
+* 肉鸽任务高级设置界面 xaml 错误修复 @status102
+* 修复 fod 一直报 warning @SherkeyXD
+* 修修 ocr bin threshold 被task info 错误覆盖 @status102
+* 移除使用 empty.png 当 JustReturn 屎 (#13652) @status102
+* 识别错误等待+200ms @status102
+* 肉鸽投资可能由于存款被长期遮挡导致提前退出 @status102
+* 优化标题栏显示效果 @ABA2396
+* 版本后面也跟个日期 @ABA2396
+* 反转网络桥接提示框的按钮位置，避免误勾选 @ABA2396
+* 调整自动战斗页面布局 @ABA2396
+* 调整编队界面翻译 @ABA2396
+* 合并 regex @status102
+* 更新 nuke 版本 @SherkeyXD
+* 更新 nuke 构建参数信息 @SherkeyXD
+* 更新 MaaBuilder 中使用的过时方法 @SherkeyXD
+* wpf 肉鸽难度初始化优化 @status102
+* 迁移 UpdateStageList @status102
+* _stageManager 迁移 @status102
+* binThreshold, useRaw 直接写入 task @status102
+* 繁中服「出蒼白海」導航入口文字調整 (#13681) @momomochi987
+* 调整 LDExtras 文件位置 @ABA2396
+* 自动战斗存图阈值改为 0.75 @ABA2396
+* 刷理智任务指定材料不再使用双属性保存，仅保存物品 id @status102
+* 密文板加一个进入后检查 @ABA2396
+* 繁中服「出蒼白海」活動導航 (#13644) @momomochi987
+* 添加 null 检测 @SherkeyXD
+* 合并 ocrBinThreshold (#13635) @status102
+* gitignore 添加 MaaBuilder 相关内容 @SherkeyXD
+* TestLinkAndGetImage 不允许同时运行 @ABA2396
+* 模板轮换 (#13625) @status102
+* 基建设施排序初始化 @status102
+* wpf 任务名字段统一 @status102
+* 基建设施种类 @status102
+* CustomTask 存储 @status102
+* 浅调一下初始化顺序 @status102
+* add slight delay before `InfrastEnteredFlag` in case of stutters in base rendering @Constrat
+* schema error @ABA2396
+* YostarKR CharsNameOcrReplace ocr edit @HX3N
+* rename MinimumFeatureLevel to minimumFeatureLevel @SherkeyXD
+* add copyright header @SherkeyXD
+* add nullable flags @SherkeyXD
+* add missing png suffix to templates @SherkeyXD

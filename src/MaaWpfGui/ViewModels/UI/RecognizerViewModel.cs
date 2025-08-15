@@ -27,6 +27,7 @@ using System.Windows.Threading;
 using HandyControl.Controls;
 using JetBrains.Annotations;
 using MaaWpfGui.Constants;
+using MaaWpfGui.Extensions;
 using MaaWpfGui.Helper;
 using MaaWpfGui.Main;
 using MaaWpfGui.Models;
@@ -494,9 +495,7 @@ namespace MaaWpfGui.ViewModels.UI
                     Name = ItemListHelper.GetItemName(id),
                     Image = ItemListHelper.GetItemImage(id),
                     Count = item["have"] != null && int.TryParse(item["have"]?.ToString() ?? "-1", out int haveValue)
-                        ? (haveValue > 10000
-                            ? $"{haveValue / 10000.0:F1}w"
-                            : haveValue.ToString())
+                        ? haveValue.FormatNumber(false)
                         : "-1",
                 };
 
@@ -616,10 +615,13 @@ namespace MaaWpfGui.ViewModels.UI
 
         public class Operator(string id, string name, int rarity)
         {
+            [JsonProperty("id")]
             public string Id { get; } = id;
 
+            [JsonProperty("name")]
             public string Name { get; } = name;
 
+            [JsonProperty("rarity")]
             public int Rarity { get; } = rarity;
 
             public bool Equals(Operator? other) => other != null && Name == other.Name && Rarity == other.Rarity;
@@ -786,7 +788,7 @@ namespace MaaWpfGui.ViewModels.UI
             }
 
             System.Windows.Forms.Clipboard.Clear();
-            System.Windows.Forms.Clipboard.SetDataObject(JsonConvert.SerializeObject(OperBoxHaveList.Concat(OperBoxNotHaveList), Formatting.Indented));
+            System.Windows.Forms.Clipboard.SetDataObject(JsonConvert.SerializeObject(OperBoxDataArray, Formatting.Indented));
             OperBoxInfo = LocalizationHelper.GetString("CopiedToClipboard");
         }
 
